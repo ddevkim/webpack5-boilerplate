@@ -13,11 +13,22 @@ module.exports = {
     assetModuleFilename: "[hash][ext][query]",
     clean: true,
   },
-  plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      templateParameters: {
+        title: "Make what you want",
+        lang: "en",
+      },
+    }),
+    new MiniCssExtractPlugin(),
+  ],
   devtool: "source-map",
   devServer: {
     devMiddleware: {
       publicPath: "/",
+    },
+    client: {
+      logging: "none",
     },
     static: {
       directory: path.join(__dirname, "dist"),
